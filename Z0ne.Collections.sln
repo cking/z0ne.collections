@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BFADF57B-7326-46A5-8172-88F957FF579F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{580E32ED-C78E-41AC-843C-60128B985667}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "global", "global", "{22ACE86F-C0BF-4494-BAAF-E02FD0227DC5}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Z0ne.Collections", "src\Z0ne.Collections\Z0ne.Collections.csproj", "{8B9F6FB8-39FE-4697-B8FD-EE172558038D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B9F6FB8-39FE-4697-B8FD-EE172558038D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B9F6FB8-39FE-4697-B8FD-EE172558038D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B9F6FB8-39FE-4697-B8FD-EE172558038D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B9F6FB8-39FE-4697-B8FD-EE172558038D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8B9F6FB8-39FE-4697-B8FD-EE172558038D} = {BFADF57B-7326-46A5-8172-88F957FF579F}
+	EndGlobalSection
+EndGlobal
