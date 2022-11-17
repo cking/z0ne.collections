@@ -48,3 +48,18 @@ jobs:
                   dotnet test
                   --no-restore
                   --verbosity normal
+                  --collect:"XPlat Code Coverage"
+                  --results-directory ../TestResults
+                  --settings coverlet.runsettings
+
+            - name: Move coverage file
+              run: >
+                  mv ../TestResults/*/* ../TestResults
+
+            - name: Display coverage
+              uses: ewjoachim/coverage-comment-action@v1
+              with:
+                  GITHUB_TOKEN: ${{ github.token }}
+                  COVERAGE_FILE: ../TestResults/coverage.xml
+                  MINIMUM_GREEN: 90
+                  MINIMUM_ORANGE: 70
