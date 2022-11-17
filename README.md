@@ -4,6 +4,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
+[![Coverage][coverage-shield]][coverage-url]
 [![EUPL 1.2 License][license-shield]][license-url]
 
 
@@ -127,4 +128,5 @@ Project Link: [https://github.com/cking/z0ne.collections](https://github.com/cki
 [issues-url]: https://github.com/cking/z0ne.collections/issues
 [license-shield]: https://img.shields.io/github/license/cking/z0ne.collections.svg?style=for-the-badge
 [license-url]: https://github.com/cking/z0ne.collections/blob/master/LICENSE.txt
-[product-screenshot]: images/screenshot.png
+[coverage-shield]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/wiki/cking/z0ne.collections/coverage-comment-badge.json&style=for-the-badge
+[coverage-url]: https://github.com/cking/z0ne.collections
