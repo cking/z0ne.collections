@@ -2,6 +2,12 @@ name: CI
 
 on:
     push:
+        branches:
+            - trunk
+    pull_request_target:
+        branches:
+            - trunk
+    workflow_call:
 
 jobs:
     ci:
