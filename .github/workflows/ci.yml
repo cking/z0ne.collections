@@ -14,15 +14,16 @@ jobs:
         uses: ./.github/workflows/call-make.yml
 
     cd:
-        - name: 🛒 Checkout
-          uses: actions/checkout@v3
-          with:
-              ref: ${{ github.event.pull_request.head.sha }}
-              fetch-depth: '0'
+        steps:
+            - name: 🛒 Checkout
+              uses: actions/checkout@v3
+              with:
+                  ref: ${{ github.event.pull_request.head.sha }}
+                  fetch-depth: '0'
 
-        - name: 🏷️ Bump version and push tag
-          uses: anothrNick/github-tag-action@v1
-          env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              WITH_V: true
-              VERBOSE: false
+            - name: 🏷️ Bump version and push tag
+              uses: anothrNick/github-tag-action@v1
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  WITH_V: true
+                  VERBOSE: false
