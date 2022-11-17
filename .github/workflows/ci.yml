@@ -1,4 +1,4 @@
-name: CI
+name: ⭐ CI
 
 on:
     push:
@@ -11,54 +11,18 @@ on:
 
 jobs:
     ci:
-        name: Restore, Build, Update
-        runs-on: ubuntu-latest
+        uses: ./.github/workflows/call-make.yml
 
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v3
+    cd:
+        - name: 🛒 Checkout
+          uses: actions/checkout@v3
+          with:
+              ref: ${{ github.event.pull_request.head.sha }}
+              fetch-depth: '0'
 
-            - name: Cache Deps
-              id: cache-deps
-              uses: actions/cache@v3
-              with:
-                  path: ~/.nuget/packages
-                  key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-                  restore-keys: |
-                      ${{ runner.os }}-nuget-
-
-            - name: Prepare .net
-              uses: actions/setup-dotnet@v3
-              with:
-                  dotnet-version: 7
-
-            - name: Restore deps
-              run: >
-                  dotnet restore
-                  --locked-mode
-
-            - name: Build
-              run: >
-                  dotnet build
-                  --configuration Release
-                  --no-restore
-
-            - name: Test
-              run: >
-                  dotnet test
-                  --no-restore
-                  --verbosity normal
-                  --collect:"XPlat Code Coverage"
-                  --results-directory TestResults
-
-            - name: Move coverage file
-              run: >
-                  mv -v TestResults/*/* TestResults
-
-            - name: Display coverage
-              uses: ewjoachim/coverage-comment-action@v1
-              with:
-                  GITHUB_TOKEN: ${{ github.token }}
-                  COVERAGE_FILE: TestResults/coverage.cobertura.xml
-                  MINIMUM_GREEN: 90
-                  MINIMUM_ORANGE: 70
+        - name: 🏷️ Bump version and push tag
+          uses: anothrNick/github-tag-action@v1
+          env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              WITH_V: true
+              VERBOSE: false
