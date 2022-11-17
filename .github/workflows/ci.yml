@@ -49,16 +49,16 @@ jobs:
                   --no-restore
                   --verbosity normal
                   --collect:"XPlat Code Coverage"
-                  --results-directory ../TestResults
+                  --results-directory TestResults
 
             - name: Move coverage file
               run: >
-                  mv ../TestResults/*/* ../TestResults
+                  mv -v TestResults/*/* TestResults
 
             - name: Display coverage
               uses: ewjoachim/coverage-comment-action@v1
               with:
                   GITHUB_TOKEN: ${{ github.token }}
-                  COVERAGE_FILE: ../TestResults/coverage.cobertura.xml
+                  COVERAGE_FILE: TestResults/coverage.cobertura.xml
                   MINIMUM_GREEN: 90
                   MINIMUM_ORANGE: 70
