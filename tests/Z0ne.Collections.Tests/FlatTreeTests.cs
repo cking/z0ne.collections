@@ -90,33 +90,35 @@ public class FlatTreeTests
         descendents.Should().HaveCount(100);
     }
 
-    /*
-    public T Data => node.Data;
-
-    public FlatTreeBranch<T> Root => tree[index: 0];
-
-    internal FlatTreeBranch(FlatTree<T> tree, int index, FlatTreeNode<T> node)
+    [Fact]
+    public void Root_OnRootNode_ReturnsItself()
     {
-        this.tree = tree;
-        Index = index;
-        this.node = node;
+        // Act
+        var root = sut.Root;
+
+        // Assert
+        root.Should().BeEquivalentTo(sut);
     }
 
-    public static implicit operator T(FlatTreeBranch<T> self)
+    [Fact]
+    public void Root_OnSubNode_ReturnsRoot()
     {
-        return self.Data;
+        // Act
+        var root = sut.Children.First().Root;
+
+        // Assert
+        root.Should().BeEquivalentTo(sut);
     }
 
-    public FlatTreeBranch<T> AddBranch(T data)
+    [Fact]
+    public void AddBranch_WithData_ShouldAddNewBranch()
     {
-        SanityCheck();
-        return tree.Add(data, Index, node.Depth + 1);
+        // Act
+        var child = sut.AddBranch("data");
+
+        // Assert
+        sut.Children.Should().HaveCount(6);
+        sut.Children.Last().Should().BeEquivalentTo(child);
     }
 
-    public void RemoveBranch(FlatTreeBranch<T> branch)
-    {
-        SanityCheck();
-        tree.RemoveRecursive(branch);
-    }
-*/
 }

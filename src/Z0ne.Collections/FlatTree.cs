@@ -11,20 +11,9 @@ public class FlatTree<T> : IReadOnlyCollection<T>, IFlatTreeBranch<T>
 {
     private readonly SortedList<int, FlatTreeNode<T>> nodes = new();
 
-    private readonly HashSet<int> deletedNodes = new();
-
     private readonly object syncLock = new();
 
-    public int Count
-    {
-        get
-        {
-            lock (syncLock)
-            {
-                return nodes.Count - deletedNodes.Count;
-            }
-        }
-    }
+    public int Count => nodes.Count;
 
     public IEnumerable<IFlatTreeBranch<T>> AllBranches => YieldAllBranches();
 
@@ -37,7 +26,7 @@ public class FlatTree<T> : IReadOnlyCollection<T>, IFlatTreeBranch<T>
 
     public T Data => nodes[key: 0].Data;
 
-    public IFlatTreeBranch<T> Root => this[index: 0];
+    public IFlatTreeBranch<T> Root => this;
 
     public FlatTree(T root)
     {
@@ -77,11 +66,6 @@ public class FlatTree<T> : IReadOnlyCollection<T>, IFlatTreeBranch<T>
         return Add(data, parent: 0, depth: 1);
     }
 
-    public void RemoveBranch(FlatTreeBranch<T> branch)
-    {
-        RemoveRecursive(branch);
-    }
-
     public override int GetHashCode()
     {
         return this[index: 0].GetHashCode();
@@ -107,11 +91,6 @@ public class FlatTree<T> : IReadOnlyCollection<T>, IFlatTreeBranch<T>
         lock (syncLock)
         {
             var index = nodes.Count;
-            if (deletedNodes.Any())
-            {
-                index = deletedNodes.First();
-                deletedNodes.Remove(index);
-            }
 
             var node = new FlatTreeNode<T>(data, parent, depth);
             nodes.Add(index, node);
@@ -120,34 +99,12 @@ public class FlatTree<T> : IReadOnlyCollection<T>, IFlatTreeBranch<T>
         }
     }
 
-    internal bool IsNodeDeleted(int index)
-    {
-        lock (syncLock)
-        {
-            return deletedNodes.Contains(index);
-        }
-    }
-
-    internal void RemoveRecursive(FlatTreeBranch<T> branch)
-    {
-        lock (syncLock)
-        {
-            foreach (var descendent in branch.Descendents.Where(d => d is FlatTreeBranch<T>).Cast<FlatTreeBranch<T>>())
-            {
-                deletedNodes.Add(descendent.Index);
-            }
-
-            deletedNodes.Add(branch.Index);
-        }
-    }
-
     private IEnumerable<IFlatTreeBranch<T>> YieldAllBranches()
     {
         yield return this;
-
-        foreach ((var index, var node) in nodes.Skip(count: 1))
+        foreach (var kvp in nodes.Skip(1))
         {
-            yield return new FlatTreeBranch<T>(this, index, node);
+            yield return new FlatTreeBranch<T>(this, kvp.Key, kvp.Value);
         }
     }
 }

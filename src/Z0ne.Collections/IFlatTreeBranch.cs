@@ -18,6 +18,4 @@ public interface IFlatTreeBranch<T> : IEquatable<IFlatTreeBranch<T>>
     public IFlatTreeBranch<T> Root { get; }
 
     IFlatTreeBranch<T> AddBranch(T data);
-
-    void RemoveBranch(FlatTreeBranch<T> branch);
 }

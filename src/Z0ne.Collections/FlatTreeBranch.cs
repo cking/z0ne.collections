@@ -22,7 +22,7 @@ public class FlatTreeBranch<T> : IFlatTreeBranch<T>
 
     public T Data => node.Data;
 
-    public IFlatTreeBranch<T> Root => tree[index: 0];
+    public IFlatTreeBranch<T> Root => tree;
 
     internal FlatTreeBranch(FlatTree<T> tree, int index, FlatTreeNode<T> node)
     {
@@ -48,14 +48,7 @@ public class FlatTreeBranch<T> : IFlatTreeBranch<T>
 
     public IFlatTreeBranch<T> AddBranch(T data)
     {
-        SanityCheck();
         return tree.Add(data, Index, node.Depth + 1);
-    }
-
-    public void RemoveBranch(FlatTreeBranch<T> branch)
-    {
-        SanityCheck();
-        tree.RemoveRecursive(branch);
     }
 
     public override int GetHashCode()
@@ -71,18 +64,5 @@ public class FlatTreeBranch<T> : IFlatTreeBranch<T>
     public override bool Equals(object? obj)
     {
         return ReferenceEquals(this, obj) || (obj is FlatTree<T> other && Equals(other));
-    }
-
-    private void SanityCheck()
-    {
-        if (tree.IsNodeDeleted(Index))
-        {
-            throw new KeyNotFoundException("node has been deleted");
-        }
-
-        if (tree[Index].GetHashCode() != node.GetHashCode())
-        {
-            throw new Exception("node has been changed");
-        }
     }
 }
