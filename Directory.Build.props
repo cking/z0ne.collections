@@ -4,6 +4,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <TargetFrameworks>net6.0;net7.0;netstandard2.1</TargetFrameworks>
+        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
 
         <Company>Z0ne</Company>
         <Authors>Kura</Authors>

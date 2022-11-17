@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "dependencies": {
+    ".NETStandard,Version=v2.1": {
+      "AsyncFixer": {
+        "type": "Direct",
+        "requested": "[1.6.0, )",
+        "resolved": "1.6.0",
+        "contentHash": "/Xfs9H3UMfEv64cwT+C/JrTRp4w08BmPuFbj0ageadCHpx6rxYJxAU2C6sEqRFG22xmGk5cX9ewzoiiehWVHOw=="
+      },
+      "AsyncSuffixAnalyzer": {
+        "type": "Direct",
+        "requested": "[1.0.6285.32977, )",
+        "resolved": "1.0.6285.32977",
+        "contentHash": "S2ULBN11lkipQ2E0KJlY91ysYDeSUqg5WMgDuNRNO0HwCWhrOdwfZ0K4wgStqpT4wJZI4D2YobDj/La4XA8Tvw=="
+      },
+      "IDisposableAnalyzers": {
+        "type": "Direct",
+        "requested": "[4.0.2, )",
+        "resolved": "4.0.2",
+        "contentHash": "bmfujLOOEKcTULCu8XerA4V5p0WSNFfN4MXMUVMfyvhv0eDcqkdSKgf32nkSOeHQgoNzdDrSG2tTfxZchmRApQ=="
+      },
+      "Meziantou.Analyzer": {
+        "type": "Direct",
+        "requested": "[1.0.748, )",
+        "resolved": "1.0.748",
+        "contentHash": "VW0xBOvFdr4CIfBfBhK9liZrbGPi2n/9QJBLf25y8+FNBI/LlyOkVChNuVLOFKetg3JspEZHY01iDL+sr1e9jw=="
+      },
+      "ReflectionAnalyzers": {
+        "type": "Direct",
+        "requested": "[0.3.1, )",
+        "resolved": "0.3.1",
+        "contentHash": "Q7N3nziye+vGsDPcrKrPFjlaFhrM+1adtJcpjFeq4ufBB+uKc4kRezSK03382xpE8iNQbiRHUl+z31NW0W18FQ=="
+      },
+      "Roslyn.System.IO.Abstractions.Analyzers": {
+        "type": "Direct",
+        "requested": "[12.2.19, )",
+        "resolved": "12.2.19",
+        "contentHash": "1/zB6aGagyAbwYR5VNvm10zMCk32C3UTGw5Wy9UJs0p1PNMNyk9/0VAjBI/yjrGHEY4NUto7Tl/I883CvDe+CQ=="
+      }
+    },
+    "net6.0": {
+      "AsyncFixer": {
+        "type": "Direct",
+        "requested": "[1.6.0, )",
+        "resolved": "1.6.0",
+        "contentHash": "/Xfs9H3UMfEv64cwT+C/JrTRp4w08BmPuFbj0ageadCHpx6rxYJxAU2C6sEqRFG22xmGk5cX9ewzoiiehWVHOw=="
+      },
+      "AsyncSuffixAnalyzer": {
+        "type": "Direct",
+        "requested": "[1.0.6285.32977, )",
+        "resolved": "1.0.6285.32977",
+        "contentHash": "S2ULBN11lkipQ2E0KJlY91ysYDeSUqg5WMgDuNRNO0HwCWhrOdwfZ0K4wgStqpT4wJZI4D2YobDj/La4XA8Tvw=="
+      },
+      "IDisposableAnalyzers": {
+        "type": "Direct",
+        "requested": "[4.0.2, )",
+        "resolved": "4.0.2",
+        "contentHash": "bmfujLOOEKcTULCu8XerA4V5p0WSNFfN4MXMUVMfyvhv0eDcqkdSKgf32nkSOeHQgoNzdDrSG2tTfxZchmRApQ=="
+      },
+      "Meziantou.Analyzer": {
+        "type": "Direct",
+        "requested": "[1.0.748, )",
+        "resolved": "1.0.748",
+        "contentHash": "VW0xBOvFdr4CIfBfBhK9liZrbGPi2n/9QJBLf25y8+FNBI/LlyOkVChNuVLOFKetg3JspEZHY01iDL+sr1e9jw=="
+      },
+      "ReflectionAnalyzers": {
+        "type": "Direct",
+        "requested": "[0.3.1, )",
+        "resolved": "0.3.1",
+        "contentHash": "Q7N3nziye+vGsDPcrKrPFjlaFhrM+1adtJcpjFeq4ufBB+uKc4kRezSK03382xpE8iNQbiRHUl+z31NW0W18FQ=="
+      },
+      "Roslyn.System.IO.Abstractions.Analyzers": {
+        "type": "Direct",
+        "requested": "[12.2.19, )",
+        "resolved": "12.2.19",
+        "contentHash": "1/zB6aGagyAbwYR5VNvm10zMCk32C3UTGw5Wy9UJs0p1PNMNyk9/0VAjBI/yjrGHEY4NUto7Tl/I883CvDe+CQ=="
+      }
+    },
+    "net7.0": {
+      "AsyncFixer": {
+        "type": "Direct",
+        "requested": "[1.6.0, )",
+        "resolved": "1.6.0",
+        "contentHash": "/Xfs9H3UMfEv64cwT+C/JrTRp4w08BmPuFbj0ageadCHpx6rxYJxAU2C6sEqRFG22xmGk5cX9ewzoiiehWVHOw=="
+      },
+      "AsyncSuffixAnalyzer": {
+        "type": "Direct",
+        "requested": "[1.0.6285.32977, )",
+        "resolved": "1.0.6285.32977",
+        "contentHash": "S2ULBN11lkipQ2E0KJlY91ysYDeSUqg5WMgDuNRNO0HwCWhrOdwfZ0K4wgStqpT4wJZI4D2YobDj/La4XA8Tvw=="
+      },
+      "IDisposableAnalyzers": {
+        "type": "Direct",
+        "requested": "[4.0.2, )",
+        "resolved": "4.0.2",
+        "contentHash": "bmfujLOOEKcTULCu8XerA4V5p0WSNFfN4MXMUVMfyvhv0eDcqkdSKgf32nkSOeHQgoNzdDrSG2tTfxZchmRApQ=="
+      },
+      "Meziantou.Analyzer": {
+        "type": "Direct",
+        "requested": "[1.0.748, )",
+        "resolved": "1.0.748",
+        "contentHash": "VW0xBOvFdr4CIfBfBhK9liZrbGPi2n/9QJBLf25y8+FNBI/LlyOkVChNuVLOFKetg3JspEZHY01iDL+sr1e9jw=="
+      },
+      "ReflectionAnalyzers": {
+        "type": "Direct",
+        "requested": "[0.3.1, )",
+        "resolved": "0.3.1",
+        "contentHash": "Q7N3nziye+vGsDPcrKrPFjlaFhrM+1adtJcpjFeq4ufBB+uKc4kRezSK03382xpE8iNQbiRHUl+z31NW0W18FQ=="
+      },
+      "Roslyn.System.IO.Abstractions.Analyzers": {
+        "type": "Direct",
+        "requested": "[12.2.19, )",
+        "resolved": "12.2.19",
+        "contentHash": "1/zB6aGagyAbwYR5VNvm10zMCk32C3UTGw5Wy9UJs0p1PNMNyk9/0VAjBI/yjrGHEY4NUto7Tl/I883CvDe+CQ=="
+      }
+    }
+  }
+}
