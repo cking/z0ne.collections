@@ -13,15 +13,16 @@ public class FlatTreeBranch<T> : IFlatTreeBranch<T>
 
     private readonly FlatTreeNode<T> node;
 
-    public FlatTreeBranch<T> Parent => tree[node.Parent];
+    public IFlatTreeBranch<T> Parent => node.Parent == 0 ? tree : tree[node.Parent];
 
-    public IEnumerable<FlatTreeBranch<T>> Children => tree.AllBranches.Where(branch => branch.node.Parent == Index);
+    public IEnumerable<IFlatTreeBranch<T>> Children => tree.AllBranches.Where(branch => branch.Parent?.Equals(this) ?? false);
 
-    public IEnumerable<FlatTreeBranch<T>> Descendents => tree.AllBranches.Where(branch => branch.node.Parent == Index);
+    public IEnumerable<IFlatTreeBranch<T>> Descendents =>
+        tree.AllBranches.Where(branch => branch.HasParent(this));
 
     public T Data => node.Data;
 
-    public FlatTreeBranch<T> Root => tree[index: 0];
+    public IFlatTreeBranch<T> Root => tree[index: 0];
 
     internal FlatTreeBranch(FlatTree<T> tree, int index, FlatTreeNode<T> node)
     {
@@ -35,16 +36,41 @@ public class FlatTreeBranch<T> : IFlatTreeBranch<T>
         return self.Data;
     }
 
-    public FlatTreeBranch<T> AddBranch(T branch)
+    public static bool operator ==(FlatTreeBranch<T> left, IFlatTreeBranch<T> right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(FlatTreeBranch<T> left, IFlatTreeBranch<T> right)
+    {
+        return !(left == right);
+    }
+
+    public IFlatTreeBranch<T> AddBranch(T data)
     {
         SanityCheck();
-        return tree.Add(branch, Index, node.Depth + 1);
+        return tree.Add(data, Index, node.Depth + 1);
     }
 
     public void RemoveBranch(FlatTreeBranch<T> branch)
     {
         SanityCheck();
         tree.RemoveRecursive(branch);
+    }
+
+    public override int GetHashCode()
+    {
+        return node.GetHashCode();
+    }
+
+    public bool Equals(IFlatTreeBranch<T>? other)
+    {
+        return GetHashCode() == other?.GetHashCode();
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return ReferenceEquals(this, obj) || (obj is FlatTree<T> other && Equals(other));
     }
 
     private void SanityCheck()

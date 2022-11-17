@@ -2,12 +2,13 @@
     <PropertyGroup>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageTags>collections</PackageTags>
+        <PackageIcon>icon.png</PackageIcon>
     </PropertyGroup>
-
     <ItemGroup>
-        <None Include="..\..\icon.png">
-            <Pack>True</Pack>
-            <Link>icon.png</Link>
-        </None>
+      <None Include="..\..\icon.png">
+        <Pack>True</Pack>
+        <PackagePath></PackagePath>
+        <Link>icon.png</Link>
+      </None>
     </ItemGroup>
 </Project>

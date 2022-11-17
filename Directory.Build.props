@@ -18,8 +18,7 @@
         <PackageProjectUrl>https://github.com/cking/z0ne.collections</PackageProjectUrl>
         <RepositoryUrl>https://github.com/cking/z0ne.collections</RepositoryUrl>
         <RepositoryType>Git</RepositoryType>
-        <PackageLicenseUrl>https://github.com/cking/z0ne.collections/blob/trunk/LICENSE</PackageLicenseUrl>
-        <PackageIcon>icon.png</PackageIcon>
+        <PackageLicenseExpression>EUPL-1.2</PackageLicenseExpression>
         <NeutralLanguage>en</NeutralLanguage>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

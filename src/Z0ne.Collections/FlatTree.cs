@@ -26,24 +26,45 @@ public class FlatTree<T> : IReadOnlyCollection<T>, IFlatTreeBranch<T>
         }
     }
 
-    public IEnumerable<FlatTreeBranch<T>> AllBranches => YieldAllBranches();
+    public IEnumerable<IFlatTreeBranch<T>> AllBranches => YieldAllBranches();
 
-    public FlatTreeBranch<T>? Parent => null;
+    public IFlatTreeBranch<T>? Parent => null;
 
-    public IEnumerable<FlatTreeBranch<T>> Children => AllBranches.Where(branch => branch.Parent.Index == 0);
+    public IEnumerable<IFlatTreeBranch<T>> Children =>
+        AllBranches.Where(branch => branch is FlatTreeBranch<T> && (branch.Parent?.Equals(this) ?? false));
 
-    public IEnumerable<FlatTreeBranch<T>> Descendents => AllBranches.Skip(count: 1);
+    public IEnumerable<IFlatTreeBranch<T>> Descendents => AllBranches.Skip(count: 1);
 
     public T Data => nodes[key: 0].Data;
 
-    public FlatTreeBranch<T> Root => this[index: 0];
+    public IFlatTreeBranch<T> Root => this[index: 0];
 
     public FlatTree(T root)
     {
         nodes.Add(key: 0, new FlatTreeNode<T>(root, Parent: 0, Depth: 0));
     }
 
-    internal FlatTreeBranch<T> this[int index] => new(this, index, nodes[index]);
+    internal IFlatTreeBranch<T> this[int index] => new FlatTreeBranch<T>(this, index, nodes[index]);
+
+    public static bool operator ==(FlatTree<T>? left, FlatTree<T>? right)
+    {
+        return Equals(left, right);
+    }
+
+    public static bool operator !=(FlatTree<T>? left, FlatTree<T>? right)
+    {
+        return !Equals(left, right);
+    }
+
+    public static bool operator ==(FlatTree<T> left, IFlatTreeBranch<T> right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(FlatTree<T> left, IFlatTreeBranch<T> right)
+    {
+        return !(left == right);
+    }
 
     public IEnumerator<T> GetEnumerator()
     {
@@ -51,7 +72,37 @@ public class FlatTree<T> : IReadOnlyCollection<T>, IFlatTreeBranch<T>
                                            .GetEnumerator();
     }
 
-    public FlatTreeBranch<T> Add(T data, int parent, int depth)
+    public IFlatTreeBranch<T> AddBranch(T data)
+    {
+        return Add(data, parent: 0, depth: 1);
+    }
+
+    public void RemoveBranch(FlatTreeBranch<T> branch)
+    {
+        RemoveRecursive(branch);
+    }
+
+    public override int GetHashCode()
+    {
+        return this[index: 0].GetHashCode();
+    }
+
+    public bool Equals(IFlatTreeBranch<T>? other)
+    {
+        return GetHashCode() == other?.GetHashCode();
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return ReferenceEquals(this, obj) || (obj is FlatTree<T> other && Equals(other));
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+
+    internal IFlatTreeBranch<T> Add(T data, int parent, int depth)
     {
         lock (syncLock)
         {
@@ -69,21 +120,6 @@ public class FlatTree<T> : IReadOnlyCollection<T>, IFlatTreeBranch<T>
         }
     }
 
-    public FlatTreeBranch<T> AddBranch(T branch)
-    {
-        return Add(branch, parent: 0, depth: 1);
-    }
-
-    public void RemoveBranch(FlatTreeBranch<T> branch)
-    {
-        RemoveRecursive(branch);
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
-
     internal bool IsNodeDeleted(int index)
     {
         lock (syncLock)
@@ -96,7 +132,7 @@ public class FlatTree<T> : IReadOnlyCollection<T>, IFlatTreeBranch<T>
     {
         lock (syncLock)
         {
-            foreach (var descendent in branch.Descendents)
+            foreach (var descendent in branch.Descendents.Where(d => d is FlatTreeBranch<T>).Cast<FlatTreeBranch<T>>())
             {
                 deletedNodes.Add(descendent.Index);
             }
@@ -105,9 +141,11 @@ public class FlatTree<T> : IReadOnlyCollection<T>, IFlatTreeBranch<T>
         }
     }
 
-    private IEnumerable<FlatTreeBranch<T>> YieldAllBranches()
+    private IEnumerable<IFlatTreeBranch<T>> YieldAllBranches()
     {
-        foreach ((var index, var node) in nodes)
+        yield return this;
+
+        foreach ((var index, var node) in nodes.Skip(count: 1))
         {
             yield return new FlatTreeBranch<T>(this, index, node);
         }

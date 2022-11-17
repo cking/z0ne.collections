@@ -5,19 +5,19 @@
 
 namespace Z0ne.Collections;
 
-public interface IFlatTreeBranch<T>
+public interface IFlatTreeBranch<T> : IEquatable<IFlatTreeBranch<T>>
 {
-    FlatTreeBranch<T>? Parent { get; }
+    IFlatTreeBranch<T>? Parent { get; }
 
-    IEnumerable<FlatTreeBranch<T>> Children { get; }
+    IEnumerable<IFlatTreeBranch<T>> Children { get; }
 
-    IEnumerable<FlatTreeBranch<T>> Descendents { get; }
+    IEnumerable<IFlatTreeBranch<T>> Descendents { get; }
 
     T Data { get; }
 
-    public FlatTreeBranch<T> Root { get; }
+    public IFlatTreeBranch<T> Root { get; }
 
-    FlatTreeBranch<T> AddBranch(T branch);
+    IFlatTreeBranch<T> AddBranch(T data);
 
     void RemoveBranch(FlatTreeBranch<T> branch);
 }
