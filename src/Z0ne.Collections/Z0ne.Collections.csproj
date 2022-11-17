@@ -1,6 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageTags>collections</PackageTags>
     </PropertyGroup>
 
+    <ItemGroup>
+        <None Include="..\..\icon.png">
+            <Pack>True</Pack>
+            <Link>icon.png</Link>
+        </None>
+    </ItemGroup>
 </Project>

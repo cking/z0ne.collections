@@ -18,17 +18,19 @@
         <PackageProjectUrl>https://github.com/cking/z0ne.collections</PackageProjectUrl>
         <RepositoryUrl>https://github.com/cking/z0ne.collections</RepositoryUrl>
         <RepositoryType>Git</RepositoryType>
+        <PackageLicenseUrl>https://github.com/cking/z0ne.collections/blob/trunk/LICENSE</PackageLicenseUrl>
+        <PackageIcon>icon.png</PackageIcon>
         <NeutralLanguage>en</NeutralLanguage>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <WarningsAsErrors/>
         <NoWarn/>
-        <PlatformTarget>x64</PlatformTarget>
+        <PlatformTarget>AnyCPU</PlatformTarget>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <PlatformTarget>x64</PlatformTarget>
+        <PlatformTarget>AnyCPU</PlatformTarget>
     </PropertyGroup>
 
     <ItemGroup>
