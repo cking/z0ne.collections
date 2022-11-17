@@ -14,6 +14,8 @@ jobs:
         uses: ./.github/workflows/call-make.yml
 
     cd:
+        runs-on: ubuntu-latest
+
         steps:
             - name: 🛒 Checkout
               uses: actions/checkout@v3
