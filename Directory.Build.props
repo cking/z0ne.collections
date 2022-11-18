@@ -10,7 +10,10 @@
         <Authors>Kura</Authors>
         <Product>Z0ne.Collections</Product>
         <Description>z0ny sharp collections</Description>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <Copyright>Copyright © 2022 z0ne</Copyright>
+        <PackageTags>collections</PackageTags>
+        <PackageIcon>icon.png</PackageIcon>
 
         <!-- x-release-please-start-version -->
         <AssemblyVersion>2.0.1.0</AssemblyVersion>
@@ -37,6 +40,11 @@
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
     </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="\"/>
+        <None Include="icon.png" Pack="true" PackagePath="\"/>
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="AsyncFixer" Version="1.6.0">
