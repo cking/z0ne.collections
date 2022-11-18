@@ -84,7 +84,7 @@ jobs:
 
             - name: 🚀 Release on nuget
               run: >
-                  find . -iname '*.nupkg' -exec
+                  find . -ipath '**/Release/*.nupkg' -exec
                   dotnet nuget push '{}' -s https://api.nuget.org/v3/index.json -k "${{ secrets.NUGET_TOKEN }}" --skip-duplicate \;
               env:
                 NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
