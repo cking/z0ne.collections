@@ -13,7 +13,7 @@
         <Copyright>Copyright © 2022 z0ne</Copyright>
 
         <!-- x-release-please-start-version -->
-        <AssemblyVersion>1.0.2.0</AssemblyVersion>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <!-- x-release-please-end -->
 
         <Title>Z0ne.Collections</Title>
