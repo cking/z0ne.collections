@@ -108,6 +108,46 @@ public class FlatTreeTests
     }
 
     [Fact]
+    public void Data_OnRootNode_ReturnsValue()
+    {
+        // Act
+        var val = sut.Data;
+
+        // Assert
+        val.Should().Be("root");
+    }
+
+    [Fact]
+    public void Data_OnSubNode_ReturnsValue()
+    {
+        // Act
+        var val = sut.Children.First().Data;
+
+        // Assert
+        val.Should().Be("branch 0");
+    }
+
+    [Fact]
+    public void Count_OnRootNode_ReturnsAllChildrenAmount()
+    {
+        // Act
+        var val = sut.Count;
+
+        // Assert
+        val.Should().Be(5);
+    }
+
+    [Fact]
+    public void Count_OnSubNode_ReturnsAllChildrenAmount()
+    {
+        // Act
+        var val = sut.Children.First().Count;
+
+        // Assert
+        val.Should().Be(100);
+    }
+
+    [Fact]
     public void AddBranch_WithData_ShouldAddNewBranch()
     {
         // Act

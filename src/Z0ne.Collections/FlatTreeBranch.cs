@@ -25,7 +25,7 @@ public class FlatTreeBranch<T> : IFlatTreeBranch<T>
 
     public IFlatTreeBranch<T> Root => this[index: 0];
 
-    public int Count => store.Count;
+    public int Count => Children.Count();
 
     private IEnumerable<IFlatTreeBranch<T>> All => store.Keys.Select(index => new FlatTreeBranch<T>(store, index));
 
