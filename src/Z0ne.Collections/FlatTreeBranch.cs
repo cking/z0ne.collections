@@ -3,66 +3,57 @@
 // Licensed under the EUPL 1.2 License.
 // See LICENSE the project root for license information.
 
+using System.Collections;
+
 namespace Z0ne.Collections;
 
 public class FlatTreeBranch<T> : IFlatTreeBranch<T>
 {
-    internal readonly int Index;
+    private readonly FlatTreeStore<T> store;
 
-    private readonly FlatTree<T> tree;
+    public IFlatTreeBranch<T>? Parent => Depth > 0 ? this[store[Index].Parent] : null;
 
-    private readonly FlatTreeNode<T> node;
+    public IEnumerable<IFlatTreeBranch<T>> Children => All.Where(branch => (branch.Parent?.Index ?? -1) == Index);
 
-    public IFlatTreeBranch<T> Parent => node.Parent == 0 ? tree : tree[node.Parent];
+    public IEnumerable<IFlatTreeBranch<T>> Descendents => All.Where(branch => branch.HasParent(this));
 
-    public IEnumerable<IFlatTreeBranch<T>> Children => tree.AllBranches.Where(branch => branch.Parent?.Equals(this) ?? false);
+    public T Data => store[Index].Data;
 
-    public IEnumerable<IFlatTreeBranch<T>> Descendents =>
-        tree.AllBranches.Where(branch => branch.HasParent(this));
+    public int Depth => store[Index].Depth;
 
-    public T Data => node.Data;
+    public int Index { get; }
 
-    public IFlatTreeBranch<T> Root => tree;
+    public IFlatTreeBranch<T> Root => this[index: 0];
 
-    internal FlatTreeBranch(FlatTree<T> tree, int index, FlatTreeNode<T> node)
+    public int Count => store.Count;
+
+    private IEnumerable<IFlatTreeBranch<T>> All => store.Keys.Select(index => new FlatTreeBranch<T>(store, index));
+
+    public FlatTreeBranch(FlatTreeStore<T> store, int index)
     {
-        this.tree = tree;
+        this.store = store;
         Index = index;
-        this.node = node;
     }
 
-    public static implicit operator T(FlatTreeBranch<T> self)
-    {
-        return self.Data;
-    }
-
-    public static bool operator ==(FlatTreeBranch<T> left, IFlatTreeBranch<T> right)
-    {
-        return left.Equals(right);
-    }
-
-    public static bool operator !=(FlatTreeBranch<T> left, IFlatTreeBranch<T> right)
-    {
-        return !(left == right);
-    }
+    internal IFlatTreeBranch<T> this[int index] => new FlatTreeBranch<T>(store, index);
 
     public IFlatTreeBranch<T> AddBranch(T data)
     {
-        return tree.Add(data, Index, node.Depth + 1);
+        return this[store.Append(data, Index, Depth + 1)];
     }
 
-    public override int GetHashCode()
+    public IEnumerator<T> GetEnumerator()
     {
-        return node.GetHashCode();
+        return store.Values.Select(entry => entry.Data).GetEnumerator();
     }
 
     public bool Equals(IFlatTreeBranch<T>? other)
     {
-        return GetHashCode() == other?.GetHashCode();
+        return other is not null && other.Index == Index;
     }
 
-    public override bool Equals(object? obj)
+    IEnumerator IEnumerable.GetEnumerator()
     {
-        return ReferenceEquals(this, obj) || (obj is FlatTree<T> other && Equals(other));
+        return GetEnumerator();
     }
 }

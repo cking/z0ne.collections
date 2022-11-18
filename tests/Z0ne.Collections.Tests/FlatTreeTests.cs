@@ -11,8 +11,6 @@ public class FlatTreeTests
 {
     private readonly FlatTree<string> sut;
 
-    private readonly int count;
-
     public FlatTreeTests()
     {
         sut = new FlatTree<string>("root");
@@ -20,12 +18,10 @@ public class FlatTreeTests
         for (var parent = 0; parent < 5; parent++)
         {
             var branch = sut.AddBranch($"branch {parent}");
-            count++;
 
             for (var item = 0; item < 100; item++)
             {
                 branch.AddBranch($"child {parent}.{item}");
-                count++;
             }
         }
     }
@@ -47,7 +43,8 @@ public class FlatTreeTests
         var parent = sut.Children.First().Parent;
 
         // Assert
-        parent.Should().Be(sut);
+        parent.Should().NotBeNull();
+        parent!.Should().BeEquivalentTo(sut);
     }
 
     [Fact]
@@ -57,7 +54,7 @@ public class FlatTreeTests
         var children = sut.Children;
 
         // Assert
-        children.Should().HaveCount(5);
+        children.Should().HaveCount(expected: 5);
     }
 
     [Fact]
@@ -67,7 +64,7 @@ public class FlatTreeTests
         var children = sut.Children.First().Children;
 
         // Assert
-        children.Should().HaveCount(100);
+        children.Should().HaveCount(expected: 100);
     }
 
     [Fact]
@@ -77,7 +74,7 @@ public class FlatTreeTests
         var descendents = sut.Descendents;
 
         // Assert
-        descendents.Should().HaveCount(505);
+        descendents.Should().HaveCount(expected: 505);
     }
 
     [Fact]
@@ -87,7 +84,7 @@ public class FlatTreeTests
         var descendents = sut.Children.First().Descendents;
 
         // Assert
-        descendents.Should().HaveCount(100);
+        descendents.Should().HaveCount(expected: 100);
     }
 
     [Fact]
@@ -117,8 +114,7 @@ public class FlatTreeTests
         var child = sut.AddBranch("data");
 
         // Assert
-        sut.Children.Should().HaveCount(6);
+        sut.Children.Should().HaveCount(expected: 6);
         sut.Children.Last().Should().BeEquivalentTo(child);
     }
-
 }
