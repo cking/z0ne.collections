@@ -16,6 +16,10 @@
         <AssemblyVersion>2.0.0.0</AssemblyVersion>
         <!-- x-release-please-end -->
 
+        <!-- x-release-please-start-version -->
+        <Version>1.0.2</Version>
+        <!-- x-release-please-end -->
+
         <Title>Z0ne.Collections</Title>
         <PackageProjectUrl>https://github.com/cking/z0ne.collections</PackageProjectUrl>
         <RepositoryUrl>https://github.com/cking/z0ne.collections</RepositoryUrl>
