@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/cking/z0ne.collections/compare/v2.0.0...v2.0.1) (2022-11-18)
+
+
+### Bug Fixes
+
+* Add regular version number to Directory.Build.props ([07e8aa3](https://github.com/cking/z0ne.collections/commit/07e8aa36098a3f3375317216046522a1856ee6ce))
+
 ## [2.0.0](https://github.com/cking/z0ne.collections/compare/v1.0.2...v2.0.0) (2022-11-18)
 
 
