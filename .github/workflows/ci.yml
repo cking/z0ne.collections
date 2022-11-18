@@ -24,9 +24,14 @@ jobs:
                   ref: ${{ github.event.pull_request.head.sha }}
                   fetch-depth: '0'
 
-            - name: 🏷️ Bump version and push tag
-              uses: anothrNick/github-tag-action@v1
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  WITH_V: true
-                  VERBOSE: false
+            - name: 🏷 Release Please
+              uses: google-github-actions/release-please-action@v3.1.2
+              with:
+                  release-type: simple
+                  package-name: Z0ne.Collections
+                  extra-files: |
+                      {
+                        "type": "xml",
+                        "path": "Directory.Build.props",
+                        "xpath": "//AssemblyVersion"
+                      }
