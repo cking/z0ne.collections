@@ -5,7 +5,7 @@
 
 namespace Z0ne.Collections;
 
-public interface IFlatTreeBranch<T> : IEquatable<IFlatTreeBranch<T>>
+public interface IFlatTreeBranch<T> : IEquatable<IFlatTreeBranch<T>>, IReadOnlyCollection<T>
 {
     IFlatTreeBranch<T>? Parent { get; }
 
@@ -14,6 +14,8 @@ public interface IFlatTreeBranch<T> : IEquatable<IFlatTreeBranch<T>>
     IEnumerable<IFlatTreeBranch<T>> Descendents { get; }
 
     T Data { get; }
+
+    int Index { get; }
 
     public IFlatTreeBranch<T> Root { get; }
 

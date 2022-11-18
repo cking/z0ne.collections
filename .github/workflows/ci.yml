@@ -2,6 +2,9 @@ name: ⭐ CI
 
 on:
     push:
+    pull_request_target:
+        branches:
+            - trunk
 
 jobs:
     release-please:
@@ -52,6 +55,7 @@ jobs:
         with:
             create-artifact: ${{ needs.release-please.outputs.created == 'true' }}
             artifact-name: nupkg
+            create-coverage: true
 
     cd:
         name: 🚀 Upload released application
