@@ -2,31 +2,84 @@ name: ⭐ CI
 
 on:
     push:
-        branches:
-            - trunk
-    pull_request_target:
-        branches:
-            - trunk
-    workflow_dispatch:
 
 jobs:
+    release-please:
+        runs-on: ubuntu-latest
+
+        outputs:
+            created: ${{ steps.release.outputs.release_created }}
+            tag_name: ${{ steps.release.outputs.tag_name }}
+            upload_url: ${{ steps.release.outputs.upload_url }}
+
+        steps:
+            - name: 🏷 Release Please
+              uses: google-github-actions/release-please-action@2a4590f9c1d322790253d997de5cad7f7ad4bc1b
+              id: release
+              with:
+                  release-type: simple
+                  extra-files: |
+                      Directory.Build.props
+                  changelog-types: >
+                      [
+                        {
+                          "type": "feat",
+                          "section": "Features",
+                          "hidden": false
+                        },
+                        {
+                          "type": "fix",
+                          "section": "Bug Fixes",
+                          "hidden": false
+                        },
+                        {
+                          "type": "refactor",
+                          "section": "Refactors",
+                          "hidden": false
+                        },
+                        {
+                          "type": "perf",
+                          "section": "Performance Improvements",
+                          "hidden": false
+                        }
+                      ]
+
     ci:
+        needs: release-please
+
         uses: ./.github/workflows/call-make.yml
+        with:
+            create-artifact: ${{ needs.release-please.outputs.created == 'true' }}
+            artifact-name: nupkg
 
     cd:
+        name: 🚀 Upload released application
         runs-on: ubuntu-latest
-        needs: ci
+        needs:
+            - release-please
+            - ci
+
+        if: needs.release-please.outputs.created
 
         steps:
             - name: 🛒 Checkout
               uses: actions/checkout@v3
-              with:
-                  ref: ${{ github.event.pull_request.head.sha }}
-                  fetch-depth: '0'
 
-            - name: 🏷️ Bump version and push tag
-              uses: anothrNick/github-tag-action@v1
+            - name: 📥 Download artifact
+              uses: actions/download-artifact@v3
+              with:
+                  name: nupkg
+
+            - name: 🚀 Attach artifact to release
+              run: >
+                  find . -iname '*.nupkg' -exec
+                  gh release upload "${{ needs.release-please.outputs.tag_name }}" '{}' \;
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                  WITH_V: true
-                  VERBOSE: false
+
+            - name: 🚀 Release on nuget
+              run: >
+                  find . -iname '*.nupkg' -exec
+                  dotnet nuget push '{}' -s https://api.nuget.org/v3/index.json -k "${{ secrets.NUGET_TOKEN }}" --skip-duplicate \;
+              env:
+                NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
