@@ -17,7 +17,7 @@ jobs:
 
         steps:
             - name: 🏷 Release Please
-              uses: google-github-actions/release-please-action@2a4590f9c1d322790253d997de5cad7f7ad4bc1b
+              uses: google-github-actions/release-please-action@514bc6cdae71484c998108f2136a8f5e4c62b9b9
               id: release
               with:
                   token: ${{ secrets.OPS_TOKEN }}
