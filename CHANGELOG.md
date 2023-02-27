@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/cking/z0ne.collections/compare/v2.0.1...v2.0.2) (2023-02-27)
+
+
+### Bug Fixes
+
+* Fix directory links ([9e54626](https://github.com/cking/z0ne.collections/commit/9e5462628ef962cce16fe76cbab9879414e82adc))
+
 ## [2.0.1](https://github.com/cking/z0ne.collections/compare/v2.0.0...v2.0.1) (2022-11-18)
 
 
