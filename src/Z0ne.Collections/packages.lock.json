@@ -22,9 +22,9 @@
       },
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[1.0.748, )",
-        "resolved": "1.0.748",
-        "contentHash": "VW0xBOvFdr4CIfBfBhK9liZrbGPi2n/9QJBLf25y8+FNBI/LlyOkVChNuVLOFKetg3JspEZHY01iDL+sr1e9jw=="
+        "requested": "[2.0.176, )",
+        "resolved": "2.0.176",
+        "contentHash": "DFv5JsXnY012Mc9vtCEswPKhKB7yew3hwS8rk3WlcEAZBJRpWWhxURN+B2eyBRM29hN0DUYPNLoWLLQ1EiebAg=="
       },
       "ReflectionAnalyzers": {
         "type": "Direct",
@@ -60,9 +60,9 @@
       },
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[1.0.748, )",
-        "resolved": "1.0.748",
-        "contentHash": "VW0xBOvFdr4CIfBfBhK9liZrbGPi2n/9QJBLf25y8+FNBI/LlyOkVChNuVLOFKetg3JspEZHY01iDL+sr1e9jw=="
+        "requested": "[2.0.176, )",
+        "resolved": "2.0.176",
+        "contentHash": "DFv5JsXnY012Mc9vtCEswPKhKB7yew3hwS8rk3WlcEAZBJRpWWhxURN+B2eyBRM29hN0DUYPNLoWLLQ1EiebAg=="
       },
       "ReflectionAnalyzers": {
         "type": "Direct",
@@ -98,9 +98,9 @@
       },
       "Meziantou.Analyzer": {
         "type": "Direct",
-        "requested": "[1.0.748, )",
-        "resolved": "1.0.748",
-        "contentHash": "VW0xBOvFdr4CIfBfBhK9liZrbGPi2n/9QJBLf25y8+FNBI/LlyOkVChNuVLOFKetg3JspEZHY01iDL+sr1e9jw=="
+        "requested": "[2.0.176, )",
+        "resolved": "2.0.176",
+        "contentHash": "DFv5JsXnY012Mc9vtCEswPKhKB7yew3hwS8rk3WlcEAZBJRpWWhxURN+B2eyBRM29hN0DUYPNLoWLLQ1EiebAg=="
       },
       "ReflectionAnalyzers": {
         "type": "Direct",
